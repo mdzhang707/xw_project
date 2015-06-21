@@ -1,0 +1,11 @@
+package com.manage.service;
+
+import com.manage.model.ProfitReturnSetting;
+
+public class ProfitReturnSettingManage {
+	public static final boolean create(ProfitReturnSetting prs){
+		return prs.save();
+	}
+	
+	
+}

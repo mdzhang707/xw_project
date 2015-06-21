@@ -1,0 +1,26 @@
+package com.manage.controller;
+
+import com.jfinal.core.Controller;
+import com.manage.model.ShopInfo;
+import com.manage.service.ProductManage;
+import com.manage.service.ShopManage;
+
+public class ProductController extends Controller{
+	public void getProductByShop(){
+		String shopUid = this.getPara("shopUid");
+		int offset = this.getParaToInt("offset");
+		int limit = this.getParaToInt("limit");
+		renderJson("products", ProductManage.getProductByShop(shopUid, offset, limit));		
+	}
+	
+	public void list(){
+		ShopInfo shop = new ShopInfo();
+		shop.setName(this.getPara("name"));
+		shop.setName(this.getPara("firstCode"));
+		shop.setName(this.getPara("secCode"));
+		int offset = this.getParaToInt("offset");
+		int limit = this.getParaToInt("limit");
+		renderJson("shops", ShopManage.list(shop, offset, limit));		
+	}
+	
+}

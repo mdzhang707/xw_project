@@ -1,0 +1,7 @@
+package com.manage.service;
+
+public class ProfitReturnSettingManage {
+	public static final boolean create(){
+		return false;
+	}
+}

@@ -1,0 +1,14 @@
+package com.manage.controller;
+
+import com.jfinal.core.Controller;
+import com.manage.service.ProductManage;
+
+public class ProductController extends Controller{
+	public void getProductByShop(){
+		String shopUid = this.getPara("shopUid");
+		int offset = this.getParaToInt("offset");
+		int limit = this.getParaToInt("limit");
+		renderJson("products", ProductManage.getProductByShop(shopUid, offset, limit));		
+	}
+	
+}

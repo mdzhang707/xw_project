@@ -1,0 +1,8 @@
+1433640002121	Rename method 'createNewShop'
+1433640627947	Rename compilation unit 'Admanage.java'
+1433641974233	Infer generic type arguments
+1433657533282	Rename method 'createShop'
+1433657543097	Rename method 'deleteShop'
+1433657557135	Rename method 'checkShopName'
+1433660636054	Rename method 'checkName'
+1433660714267	Rename method 'checkNameRepeat'

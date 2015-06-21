@@ -1,0 +1,47 @@
+package com.manage.service;
+
+import java.util.List;
+
+import net.sf.json.JSONObject;
+
+import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.tx.Tx;
+import com.manage.model.ModelUtil;
+import com.manage.model.Product;
+import com.manage.model.ShopInfo;
+
+/**
+ * 商家信息管理
+ * @author mdzhang
+ *
+ */
+public class ShopManage {
+     public static final boolean createShop(ShopInfo shop){
+    	 ModelUtil.generateUid(shop);
+    	 shop.set("password", MD5Util.encrypt("111111"));    	     	 
+    	 return shop.save();
+     }
+     
+     @Before(Tx.class)
+     public static final boolean deleteShop(String uid) throws Exception{
+    	 ShopInfo model = ShopInfo.dao.findFirst("select * from shopinfo where uid=?", uid);
+    	 if(model!=null){
+    		 // TODO : transaction
+    		 List<Product> products = Product.dao.find("select * from product where Shop=?", uid);
+    		 for (Product product : products) {
+    			 ModelUtil.softDelete(product);
+			}
+    		 throw new Exception("test");
+    		 //return ModelUtil.softDelete(model);
+    	 }
+    	 return false;
+     }
+     
+     public static final boolean checkShopName(String name){
+    	 ShopInfo shop = ShopInfo.dao.findFirst("select * from shopinfo where name=?", name);
+    	 if(shop == null){
+    		 return false;
+    	 }
+    	 return true;
+     }     
+}

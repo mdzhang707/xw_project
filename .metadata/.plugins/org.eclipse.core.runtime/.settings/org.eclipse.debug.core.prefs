@@ -1,0 +1,2 @@
+eclipse.preferences.version=1
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<watchExpressions>\r\n<expression enabled\="true" text\="model.getUid()"/>\r\n<expression enabled\="true" text\="model.getPassword()"/>\r\n<expression enabled\="true" text\="shop.getName()"/>\r\n<expression enabled\="true" text\="where.toString()"/>\r\n<expression enabled\="true" text\="shops.getList()"/>\r\n</watchExpressions>\r\n

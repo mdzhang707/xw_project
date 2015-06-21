@@ -1,0 +1,204 @@
+package com.manage.model;
+
+import java.util.Date;
+
+import com.jfinal.plugin.activerecord.Model;
+
+/**
+ * 记录用户的基础信息
+ * @author Administrator
+ *
+ */
+public class UserInfo extends Model<UserInfo> {
+	private int iid;
+	private String uuid;
+	/**
+	 * 微信号
+	 */
+	private String wechart;
+	/**
+	 * 一级用户
+	 */
+	private String parent1;
+	/**
+	 * 二级用户
+	 */
+	private String parent2;
+	/**
+	 * 三级用户
+	 */
+	private String parent3;
+	/**
+	 * 四级用户
+	 */
+	private String parent4;
+	/**
+	 * 五级用户
+	 */
+	private String parent5;
+	/**
+	 * 六级用户
+	 */
+	private String parent6;
+	/**
+	 * 七级用户
+	 */
+	private String parent7;
+	/**
+	 * 八级用户
+	 */
+	private String parent8;
+	/**
+	 * 九级用户
+	 */
+	private String parent9;
+	/**
+	 * 十级用户
+	 */
+	private String parent10;
+	/**
+	 * 已购买
+	 */
+	private int buyed;
+	/**
+	 * 默认收货地址
+	 */
+	private String address;
+	/**
+	 * 默认联系方式
+	 */
+	private String connections;
+	/**
+	 * 状态
+	 */
+	private int status;
+	/**
+	 * 是否删除
+	 */
+	private int deleted;
+	/**
+	 * 删除时间
+	 */
+	private Date deleted_at;
+
+	public int getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
+	}
+
+	public Date getDeleted_at() {
+		return deleted_at;
+	}
+
+	public void setDeleted_at(Date deleted_at) {
+		this.deleted_at = deleted_at;
+	}
+	
+	public int getIid() {
+		return iid;
+	}
+	public void setIid(int iid) {
+		this.iid = iid;
+	}
+	public String getUid() {
+		return uuid;
+	}
+	public void setUid(String uuid) {
+		this.uid = uuid;
+	}
+	public String getWechart() {
+		return wechart;
+	}
+	public void setWechart(String wechart) {
+		this.wechart = wechart;
+	}
+	public String getParent1() {
+		return parent1;
+	}
+	public void setParent1(String parent1) {
+		this.parent1 = parent1;
+	}
+	public String getParent2() {
+		return parent2;
+	}
+	public void setParent2(String parent2) {
+		this.parent2 = parent2;
+	}
+	public String getParent3() {
+		return parent3;
+	}
+	public void setParent3(String parent3) {
+		this.parent3 = parent3;
+	}
+	public String getParent4() {
+		return parent4;
+	}
+	public void setParent4(String parent4) {
+		this.parent4 = parent4;
+	}
+	public String getParent5() {
+		return parent5;
+	}
+	public void setParent5(String parent5) {
+		this.parent5 = parent5;
+	}
+	public String getParent6() {
+		return parent6;
+	}
+	public void setParent6(String parent6) {
+		this.parent6 = parent6;
+	}
+	public String getParent7() {
+		return parent7;
+	}
+	public void setParent7(String parent7) {
+		this.parent7 = parent7;
+	}
+	public String getParent8() {
+		return parent8;
+	}
+	public void setParent8(String parent8) {
+		this.parent8 = parent8;
+	}
+	public String getParent9() {
+		return parent9;
+	}
+	public void setParent9(String parent9) {
+		this.parent9 = parent9;
+	}
+	public String getParent10() {
+		return parent10;
+	}
+	public void setParent10(String parent10) {
+		this.parent10 = parent10;
+	}
+	public int getBuyed() {
+		return buyed;
+	}
+	public void setBuyed(int buyed) {
+		this.buyed = buyed;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getConnections() {
+		return connections;
+	}
+	public void setConnections(String connections) {
+		this.connections = connections;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
+	public static final UserInfo dao = new UserInfo();
+}

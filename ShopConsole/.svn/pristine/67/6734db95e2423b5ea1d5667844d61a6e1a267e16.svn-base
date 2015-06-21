@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<jsp:include page="/view/commons/layout.jsp" />
+<title>商家管理</title>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="/dashBoard/shopList" class="navbar-brand hidden-sm">商户管理</a>
+			</div>
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand hidden-sm">商品管理</a>
+			</div>
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand hidden-sm">系统参数设置</a>
+			</div>
+		</div>
+	</div>
+
+ 	<div class="container bs-docs-container" style="margin-top:20px">
+	 	<form class="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="col-sm-1 control-label">名称</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="shopName" name='name' placeholder='商家名称（模糊查询）'>
+				</div>
+				
+				<label for="wechart" class="col-sm-1 control-label">微信号</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="weshart" name="weshart" placeholder="微信号（模糊查询）">
+				</div>
+				
+				<label for="type" class="col-sm-1 control-label">类型</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="type" name="type" placeholder="类型">
+				</div>
+				
+				<a class="col-sm-1" id="btn_query"></a>
+			</div>
+		</form>
+		
+		<div id="shopListGrid"></div>
+ 	</div>
+	
+</body>
+
+<script type="text/javascript">
+	$("#shopListGrid").kendoGrid({
+	    selectable: "multiple cell",
+	    allowCopy: true,
+	    pageable:false,
+	    columns: [
+	  	        { field: "name" },
+		        { field: "type" },
+		        { field: "firstCode" },
+		        { field: "secCode" },
+		        { field: "wechart" },
+	    ]
+	});
+	$("#button").kendoButton({
+		btn_query : true,
+		click:function(){
+			var name = $("#shopName").val();
+			var wechart=$("#wechart").val();
+			var type=$("#type").val();
+			$.ajax({
+				type:"POST",
+				url:"/shop/getShopList",
+				data:JSON.stringify({type:type,name:name,wechart:wechart}),
+				success:function(data){
+					$("#shopListGrid").data("kendoGrid").setDataSource(new kendo.data.DataSource({data: data}));
+				},
+				error:function(){
+					alert("error");
+				}
+			});
+		}
+	});
+</script>
+</html>

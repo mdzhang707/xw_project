@@ -1,0 +1,98 @@
+package com.manage.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.sf.json.JSONObject;
+
+import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.tx.Tx;
+import com.manage.model.ModelUtil;
+import com.manage.model.OrderInfo;
+import com.manage.model.Product;
+import com.manage.model.ShopInfo;
+
+/**
+ * 商家信息管理
+ * 
+ * @author mdzhang
+ *
+ */
+public class ShopManage {
+	public static final List<ShopInfo> list(ShopInfo shop, int offset, int limit){
+		StringBuffer where = new StringBuffer("from shopinfo where deleted=0");
+		List<Object> params = new ArrayList<Object>();
+		if(shop.getFirstCode() != null && !"".equals(shop.getFirstCode().trim())){
+			where.append(" and firstCode=?");
+			params.add(shop.getFirstCode().trim());
+		}
+		if(shop.getSecCode() != null && !"".equals(shop.getSecCode().trim())	){
+			where.append(" and secCode=?");
+			params.add(shop.getSecCode().trim());
+		}
+		if(shop.getName() != null && !"".equals(shop.getName().trim())	){
+			where.append(" and name like ?");
+			params.add("%" + shop.getName().trim() + "%");
+		}
+		where.append(" order by iid");		
+		Page<ShopInfo> shops = null;
+		if(params.size() == 0){
+			shops = ShopInfo.dao.paginate(offset, limit, "select *", where.toString());
+		}else{
+			shops = ShopInfo.dao.paginate(offset, limit, "select *", where.toString(), params);
+		}
+		return shops.getList();
+	}
+	
+	public static final boolean create(ShopInfo shop) {
+		ModelUtil.generateUid(shop);
+		shop.set("password", MD5Util.encrypt("111111"));
+		return shop.save();
+	}
+
+	public static final boolean edit(ShopInfo shop) {
+		ShopInfo model = ShopInfo.dao.findFirst(
+				"select * from shopinfo where  deleted =0 and uuid=?", shop.getStr("uid"));
+		if (model != null) {
+			shop.set("iid", model.getInt("iid")).set("password", model.getStr("password"));
+			return shop.update();
+		}
+		return false;
+	}
+
+	@Before(Tx.class)
+	public static final boolean delete(String uuid) throws Exception {
+		ShopInfo model = ShopInfo.dao.findFirst(
+				"select * from shopinfo where  deleted =0 and uuid=?", uuid);
+		if (model != null) {
+			// TODO : transaction
+			List<Product> products = Product.dao.find(
+					"select * from product where  deleted =0 and Shop=?", uuid);
+			for (Product product : products) {
+				ModelUtil.softDelete(product);
+			}
+			return ModelUtil.softDelete(model);
+		}
+		return false;
+	}
+
+	public static final boolean changePassword(ShopInfo shop) {
+		ShopInfo model = ShopInfo.dao.findFirst(
+				"select * from shopinfo where  deleted =0 and uuid=?", shop.getUUID());
+		if (model != null) {
+			model.set("password", MD5Util.encrypt(shop.getPassword()));
+			return model.update();
+		}
+		return false;
+	}
+
+	public static final boolean checkNameExists(String name) {
+		ShopInfo shop = ShopInfo.dao.findFirst(
+				"select * from shopinfo where  deleted =0 and name=?", name);
+		if (shop != null) {
+			return true;
+		}
+		return false;
+	}
+}

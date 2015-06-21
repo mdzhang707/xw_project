@@ -1,0 +1,63 @@
+package com.manage.controller;
+
+import com.jfinal.core.Controller;
+import com.manage.model.Product;
+import com.manage.model.ShopInfo;
+import com.manage.service.ProductManage;
+import com.manage.service.ShopManage;
+
+public class ProductController extends Controller{
+	public void getProductByShop(){
+		String shopUid = this.getPara("shopUid");
+		int offset = this.getParaToInt("offset");
+		int limit = this.getParaToInt("limit");
+		renderJson("products", ProductManage.getProductByShop(shopUid, offset, limit));		
+	}
+	
+	public void list(){
+		Product product = new Product();
+		product.setShop(this.getPara("shop"));
+		product.setName(this.getPara("name"));
+		int offset = this.getParaToInt("offset");
+		int limit = this.getParaToInt("limit");
+		renderJson("shops", ProductManage.list(product, offset, limit));		
+	}
+	
+	public void create(){
+		Product product = new Product();
+		product.set("name", this.getPara("name"));
+		product.set("type", 1);
+		product.set("shop",this.getPara("shop"));
+		product.set("showPrice",this.getParaToLong("showPrice"));
+		product.set("salesPrice",this.getParaToLong("salesPrice"));
+		product.set("origPrice",this.getParaToLong("origPrice"));
+		product.set("image",this.getPara("image"));
+		product.set("salesVolume",this.getPara("salesVolume"));
+		product.set("attributes",this.getPara("attributes"));
+		product.set("singlTag",this.getPara("singlTag"));
+		product.set("Count",this.getParaToInt("Count"));
+		renderJson("succeed", ProductManage.create(product));
+	}
+	
+	public void edit(){
+		Product product = new Product();
+		product.set("name", this.getPara("name"));
+		product.set("type", 1);
+		product.set("shop",this.getPara("shop"));
+		product.set("showPrice",this.getParaToLong("showPrice"));
+		product.set("salesPrice",this.getParaToLong("salesPrice"));
+		product.set("origPrice",this.getParaToLong("origPrice"));
+		product.set("image",this.getPara("image"));
+		product.set("salesVolume",this.getPara("salesVolume"));
+		product.set("attributes",this.getPara("attributes"));
+		product.set("singlTag",this.getPara("singlTag"));
+		product.set("Count",this.getParaToInt("Count"));
+		renderJson("succeed", ProductManage.edit(product));
+	}
+	
+	public void delete() throws Exception{
+		String uuid = this.getPara(0);
+		renderJson(ShopManage.delete(uuid));
+	}
+	
+}

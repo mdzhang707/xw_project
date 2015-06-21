@@ -1,0 +1,11 @@
+package com.manage.controller;
+
+import com.jfinal.core.Controller;
+import com.manage.service.ProfitReturnSettingManage;
+
+public class ProfitReturnSetting extends Controller {
+	public void create(){
+		ProfitReturnSetting prs = getModel(ProfitReturnSetting.class);
+		renderJson("succeed", ProfitReturnSettingManage.create(prs));
+	}
+}

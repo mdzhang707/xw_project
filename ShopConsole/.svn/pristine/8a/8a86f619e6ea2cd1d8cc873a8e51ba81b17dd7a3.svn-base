@@ -1,0 +1,90 @@
+package com.manage.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jfinal.plugin.activerecord.Page;
+import com.manage.fileUtil.SqlHelp;
+import com.manage.model.ModelUtil;
+import com.manage.model.OrderInfo;
+import com.manage.model.Product;
+import com.manage.model.ShopInfo;
+
+/**
+ * 商品信息管理
+ * @author mdzhang
+ *
+ */
+public class ProductManage {
+	public List<Product> getProduct(Product product){
+		
+		return new ArrayList<Product>();
+	}
+	
+	public static final List<Product> list(Product product, int offset, int limit){
+		StringBuffer where = new StringBuffer("from product where deleted=0");
+		List<Object> params = new ArrayList<Object>();
+		if(product.getShop() != null && !"".equals(product.getShop().trim())){
+			where.append(" and shop=?");
+			params.add(product.getShop().trim());
+		}
+		if(product.getName() != null && !"".equals(product.getName().trim())	){
+			where.append(" and name like ?");
+			params.add("%"+product.getName().trim()+"%");
+		}
+		where.append(" order by iid desc");		
+		Page<Product> products = null;
+		if(params.size() == 0){
+			products = Product.dao.paginate(offset, limit, "select *", where.toString());
+		}else{
+			products = Product.dao.paginate(offset, limit, "select *", where.toString(), params);
+		}
+		return products.getList();
+	}
+		
+	public static final List<Product> getProductByShop(String shopUid, int offset, int limit){
+		Page<Product> products = Product.dao.paginate(offset, limit, 
+				"select *", " from product where shop=? and deleted=0 order by iid", shopUid);
+		
+		return products.getList();
+	}
+	
+	public static String sqlAppend(Product product){
+		StringBuilder sql=new StringBuilder("SELECT * FROM Product WHERE IID IS NOT NULL ");
+		if(null == product){
+			return sql.toString(); 
+		}
+		if(product.getIid()>=0){
+			sql.append("and iid=").append(product.getIid()).append(" ");
+		}
+		if(!SqlHelp.IsNullOrBlack(product.getName())){
+			sql.append("and name like '%").append(product.getName()).append("% ");
+		}
+		if(!SqlHelp.IsNullOrBlack(product.getShop())){
+			sql.append("and shop=").append(product.getShop()).append(" ");
+		}
+		return sql.toString();
+	}
+	
+	public static final boolean create(Product product){
+		ModelUtil.generateUUID(product);
+		return product.save();
+	}
+	
+	public static final boolean delete(Product product){
+		Product model = Product.dao.findFirst("select * from product where deleted =0 and uuid=?", product.getUUID());
+		if(model != null){
+			return ModelUtil.softDelete(model);
+		}
+		return false;
+	}
+	
+	public static final boolean edit(Product product){
+		Product model = Product.dao.findFirst("select * from product where deleted =0 and uuid=?", product.getStr("uid"));
+		if(model != null){
+			product.set("iid", model.getInt("iid"));
+			return product.update();
+		}
+		return false;
+	}
+}

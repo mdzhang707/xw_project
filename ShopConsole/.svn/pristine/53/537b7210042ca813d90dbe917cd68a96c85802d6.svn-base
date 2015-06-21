@@ -1,0 +1,18 @@
+package com.manage.service;
+
+import com.manage.model.ProfitReturnSetting;
+
+public class ProfitReturnSettingManage {
+	public static final boolean create(ProfitReturnSetting prs){
+		return prs.save();
+	}
+	
+	public static final boolean edit(ProfitReturnSetting prs){
+		ProfitReturnSetting model = ProfitReturnSetting.dao.findFirst("select * from profitreturnsetting where deleted=0");
+		if(model != null){
+			prs.set("iid", model.getInt("iid"));
+			return prs.update();
+		}
+		return false;
+	}
+}

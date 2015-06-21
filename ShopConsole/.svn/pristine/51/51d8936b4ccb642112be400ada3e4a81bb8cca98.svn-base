@@ -1,0 +1,62 @@
+package com.manage.controller;
+
+import java.io.Console;
+import java.util.List;
+
+import com.jfinal.core.Controller;
+import com.manage.model.ShopInfo;
+import com.manage.service.ShopManage;
+
+public class ShopController extends Controller{
+	public void shopList(){
+		render("/view/shop/shopList.jsp");
+	}
+	
+	public void getShopList(){
+		List<ShopInfo>list=ShopInfo.dao.find("select * from shopInfo");
+		renderJson(list);
+	}
+	
+	public void createShop(){
+		render("/view/shop/createShop.jsp");
+	}
+	
+	public void create(){//ShopInfo shop){
+		ShopInfo shop = new ShopInfo();
+		shop.set("name", "testShop");
+		shop.set("type", 1);
+		shop.set("firstCode", "testShop");
+		shop.set("secCode", "testShop");
+		shop.set("longitude", 1);
+		shop.set("latitude", 1);
+		renderJson("succeed", ShopManage.create(shop));
+	}
+	
+	public void editShop(String uid){
+		ShopInfo shop=ShopInfo.dao.findById(uid, "uid");
+		renderJson("shop", shop);
+		render("/view/shop/editShop.jsp");
+	}
+	
+	public void edit(ShopInfo shop){
+		renderJson("succeed", shop.update());
+	}
+	
+	public void delete(ShopInfo shop) throws Exception{
+		renderJson(ShopManage.delete(shop.getUid()));
+	}
+	
+	public void delete() throws Exception{
+		String uid = this.getPara(0);
+		try{
+			renderJson(ShopManage.delete(uid));
+		}catch(Exception e){
+			
+		}
+	}
+	
+	public void checkNameRepeat(String name){
+		//String name = this.getPara(0);
+		renderJson("repeat", ShopManage.checkName(name));//shop.getName())); 
+	}
+}

@@ -1,0 +1,12 @@
+package com.manage.model;
+
+import java.util.Date;
+
+import com.jfinal.plugin.activerecord.Model;
+
+public class ModelUtil {
+	public static final boolean softDelete(Model<?> model){
+		model.set("deleted", 1).set("deleted_at", new Date());
+		return model.update();
+	}
+}

@@ -1,0 +1,50 @@
+package com.manage.controller;
+
+import java.util.List;
+
+import com.jfinal.core.Controller;
+import com.manage.model.ShopInfo;
+import com.manage.service.ShopManage;
+
+public class ShopController extends Controller{
+	public void shopList(){
+		render("/view/shop/shopList.jsp");
+	}
+	
+	public void getShopList(){
+		List<ShopInfo>list=ShopInfo.dao.find("select * from shopInfo");
+		renderJson(list);
+	}
+	
+	public void createShop(){
+		render("/view/shop/createShop.jsp");
+	}
+	
+	public void create(ShopInfo shop){
+		renderJson("succeed", shop.save());
+	}
+	
+	public void editShop(String uid){
+		ShopInfo shop=ShopInfo.dao.findById(uid, "uid");
+		renderJson("shop", shop);
+		render("/view/shop/editShop.jsp");
+	}
+	
+	public void edit(ShopInfo shop){
+		renderJson("succeed", shop.update());
+	}
+	
+	public void delete(ShopInfo shop) throws Exception{
+		renderJson(ShopManage.deleteShop(shop.getUid()));
+	}
+	
+	public void delete() throws Exception{
+		String uid = this.getPara(0);
+		renderJson(ShopManage.deleteShop(uid));
+	}
+	
+	public void checkNameRepeat(String name){
+		//String name = this.getPara(0);
+		renderJson("repeat", ShopManage.checkShopName(name));//shop.getName())); 
+	}
+}

@@ -1,0 +1,51 @@
+package com.manage.controller;
+
+import com.jfinal.core.Controller;
+import com.manage.model.Product;
+import com.manage.model.ShopInfo;
+import com.manage.service.ProductManage;
+import com.manage.service.ShopManage;
+
+public class ProductController extends Controller{
+	public void getProductByShop(){
+		String shopUid = this.getPara("shopUid");
+		int offset = this.getParaToInt("offset");
+		int limit = this.getParaToInt("limit");
+		renderJson("products", ProductManage.getProductByShop(shopUid, offset, limit));		
+	}
+	
+	public void list(){
+		Product product = new Product();
+		product.setName(this.getPara("name"));
+		product.setName(this.getPara("firstCode"));
+		product.setName(this.getPara("secCode"));
+		int offset = this.getParaToInt("offset");
+		int limit = this.getParaToInt("limit");
+		renderJson("shops", ProductManage.list(product, offset, limit));		
+	}
+	
+	public void create(){
+		ShopInfo shop = new ShopInfo();
+		shop.set("name", this.getPara("name"));
+		shop.set("type", 1);
+		shop.set("firstCode",this.getPara("firstCode"));
+		shop.set("secCode",this.getPara("secCode"));
+		renderJson("succeed", ShopManage.create(shop));
+	}
+	
+	public void edit(){
+		ShopInfo shop = new ShopInfo();
+		shop.set("uid","8682ed8e-aca9-4c5d-92f1-d30071697157");
+		shop.set("name","editShop");
+		shop.set("type",2);
+		shop.set("firstCode","testShop");
+		shop.set("secCode","testShop");
+		renderJson("succeed", ShopManage.edit(shop));
+	}
+	
+	public void delete() throws Exception{
+		String uuid = this.getPara(0);
+		renderJson(ShopManage.delete(uuid));
+	}
+	
+}
