@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.manage.model.AdInfo"/>
 <fullyQualifiedTypeName name="com.manage.model.ProfitReturn"/>
 <fullyQualifiedTypeName name="com.manage.model.SalesPayTask"/>
-<fullyQualifiedTypeName name="com.manage.model.ShopComments"/>
-<fullyQualifiedTypeName name="com.manage.model.ShopTypeDic"/>
-<fullyQualifiedTypeName name="com.manage.model.SpecialActivity"/>
 <fullyQualifiedTypeName name="com.manage.model.UserInfo"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.io.Console"/>
@@ -16,17 +12,34 @@
 <fullyQualifiedTypeName name="com.jfinal.core.Controller"/>
 <fullyQualifiedTypeName name="com.manage.service.ProductManage"/>
 <fullyQualifiedTypeName name="com.manage.controller.ProductController"/>
-<fullyQualifiedTypeName name="java.lang.StringBuffer"/>
-<fullyQualifiedTypeName name="com.jfinal.plugin.activerecord.Page"/>
 <fullyQualifiedTypeName name="com.manage.service.ShopManage"/>
 <fullyQualifiedTypeName name="com.manage.model.OrderInfoDetail"/>
-<fullyQualifiedTypeName name="com.manage.model.ModelUtil"/>
 <fullyQualifiedTypeName name="com.manage.model.ShopInfo"/>
 <fullyQualifiedTypeName name="com.manage.service.OrderManager"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="com.manage.controller.ProfitReturnSetting"/>
 <fullyQualifiedTypeName name="com.manage.model.ProfitReturnSetting"/>
 <fullyQualifiedTypeName name="com.manage.service.ProfitReturnSettingManage"/>
 <fullyQualifiedTypeName name="com.manage.model.Product"/>
 <fullyQualifiedTypeName name="com.manage.model.OrderInfo"/>
+<fullyQualifiedTypeName name="com.manage.model.CheapProduct"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.jfinal.plugin.activerecord.Page"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.manage.model.ModelUtil"/>
+<fullyQualifiedTypeName name="com.jfinal.plugin.activerecord.Db"/>
+<fullyQualifiedTypeName name="java.lang.StringBuffer"/>
+<fullyQualifiedTypeName name="com.manage.service.AdInfoManage"/>
+<fullyQualifiedTypeName name="com.manage.model.AdInfo"/>
+<fullyQualifiedTypeName name="com.manage.model.CityCode"/>
+<fullyQualifiedTypeName name="com.manage.service.CityCodeManage"/>
+<fullyQualifiedTypeName name="com.manage.controller.ShopController"/>
+<fullyQualifiedTypeName name="com.manage.model.ShopComments"/>
+<fullyQualifiedTypeName name="com.manage.service.ShopCommentsManage"/>
+<fullyQualifiedTypeName name="com.manage.model.ShopTypeDic"/>
+<fullyQualifiedTypeName name="com.manage.service.ShopTypeDicManage"/>
+<fullyQualifiedTypeName name="com.manage.model.SpecialActivity"/>
+<fullyQualifiedTypeName name="com.manage.service.SpecialActivityManage"/>
+<fullyQualifiedTypeName name="com.manage.controller.AdInfoController"/>
+<fullyQualifiedTypeName name="java.math.BigDecimal"/>
 </qualifiedTypeNameHistroy>

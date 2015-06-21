@@ -28,7 +28,7 @@ public class OrderInfoManager {
 		if(params.size() == 0){
 			orders = OrderInfo.dao.paginate(offset, limit, "select *", where.toString());
 		}else{
-			orders = OrderInfo.dao.paginate(offset, limit, "select *", where.toString(), params);
+			orders = OrderInfo.dao.paginate(offset, limit, "select *", where.toString(), params.toArray());
 		}
 		return orders.getList();
 	}

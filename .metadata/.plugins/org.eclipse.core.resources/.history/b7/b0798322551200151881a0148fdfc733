@@ -1,9 +1,0 @@
-package com.manage.controller;
-
-import com.jfinal.core.Controller;
-
-public class ProfitReturnSetting extends Controller {
-	public void create(){
-		ProfitReturnSetting prs = new ProfitReturnSetting();
-	}
-}

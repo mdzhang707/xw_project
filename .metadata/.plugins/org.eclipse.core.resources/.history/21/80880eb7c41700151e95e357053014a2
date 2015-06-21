@@ -1,0 +1,11 @@
+package com.manage.service;
+
+import java.util.List;
+
+import com.manage.model.SpecialActivity;
+
+public class SpecialActivityManage {
+	public static final List<SpecialActivity> list(SpecialActivity as){
+		
+	}
+}

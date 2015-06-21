@@ -1,0 +1,29 @@
+package com.manage.controller;
+
+import com.jfinal.core.Controller;
+import com.manage.model.ShopComments;
+import com.manage.service.ShopCommentsManage;
+
+public class ShopCommentsController extends Controller {
+	
+	
+	public void list(){
+		ShopComments sc = this.getModel(ShopComments.class);
+		renderJson("comments", ShopCommentsManage.list(comment, offset, limit));
+	}
+	
+	public void create(){
+		ShopComments sc = this.getModel(ShopComments.class);
+		renderJson("comments", ShopCommentsManage.list(comment));
+	}
+	
+	public void edit(){
+		ShopComments sc = this.getModel(ShopComments.class);
+		renderJson("comments", ShopCommentsManage.list(comment));
+	}
+	
+	public void delete(){
+		ShopComments sc = this.getModel(ShopComments.class);
+		renderJson("comments", ShopCommentsManage.list(comment));
+	}
+}

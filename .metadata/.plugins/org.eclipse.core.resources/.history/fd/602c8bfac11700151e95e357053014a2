@@ -1,0 +1,11 @@
+package com.manage.service;
+
+import java.util.List;
+
+import com.manage.model.CheapProduct;
+
+public class CheapProductManage {
+	public static final List<CheapProduct> list(CheapProduct cp, int offset, int limit){
+		StringBuffer where = new StringBuffer("from cheapproduct where deleted=0");
+	}
+}

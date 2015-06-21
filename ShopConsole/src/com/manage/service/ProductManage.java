@@ -24,18 +24,18 @@ public class ProductManage {
 		List<Object> params = new ArrayList<Object>();
 		if(product.getStr("shop") != null && !"".equals(product.getStr("shop").trim())){
 			where.append(" and shop=?");
-			params.add(product.getShop().trim());
+			params.add(product.getStr("shop").trim());
 		}
 		if(product.getStr("name") != null && !"".equals(product.getStr("name").trim())	){
 			where.append(" and name like ?");
-			params.add("%"+product.getName().trim()+"%");
+			params.add("%"+product.getStr("name").trim()+"%");
 		}
 		where.append(" order by iid desc");		
 		Page<Product> products = null;
 		if(params.size() == 0){
 			products = Product.dao.paginate(offset, limit, "select *", where.toString());
 		}else{
-			products = Product.dao.paginate(offset, limit, "select *", where.toString(), params);
+			products = Product.dao.paginate(offset, limit, "select *", where.toString(), params.toArray());
 		}
 		return products.getList();
 	}

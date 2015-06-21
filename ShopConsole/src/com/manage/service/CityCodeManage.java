@@ -9,7 +9,7 @@ public class CityCodeManage {
 	public static final List<CityCode> list(CityCode city){
 		StringBuffer where = new StringBuffer("select * from citycode where deleted=0");
 		List<Object> params = new ArrayList<Object>();
-		if(city.getInt("level") != null && !"".equals(city.getInt("level"))){
+		if(city.getInt("level") != null){
 			where.append(" and level=?");
 			params.add(city.getInt("level"));
 		}
@@ -25,6 +25,6 @@ public class CityCodeManage {
 		if(params.size() == 0){
 			return CityCode.dao.find(where.toString());
 		}
-		return CityCode.dao.find(where.toString(), params);
+		return CityCode.dao.find(where.toString(), params.toArray());
 	}
 }

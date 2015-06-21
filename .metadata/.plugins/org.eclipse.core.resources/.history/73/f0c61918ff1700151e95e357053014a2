@@ -1,0 +1,14 @@
+package com.manage.controller;
+
+import com.jfinal.core.Controller;
+import com.manage.model.AdInfo;
+import com.manage.service.AdInfoManage;
+
+public class AdInfoController extends Controller {
+	public void list(){
+		AdInfo ad = getModel(AdInfo.class);
+		int offset = this.getParaToInt("offset");
+		int limit = this.getParaToInt("limit");
+		renderJson("adInfos", AdInfoManage.list(ad, offset, limit));
+	}
+}

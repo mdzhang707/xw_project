@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.jfinal.core.Controller;
 import com.manage.model.ShopInfo;
-import com.manage.service.ShopManage;
+import com.manage.service.ShopInfoManage;
 
 public class ShopController extends Controller{
 	public void shopList(){
@@ -15,12 +15,12 @@ public class ShopController extends Controller{
 		ShopInfo shop = getModel(ShopInfo.class);
 		int offset = this.getParaToInt("offset");
 		int limit = this.getParaToInt("limit");
-		renderJson("shops", ShopManage.list(shop, offset, limit));		
+		renderJson("shops", ShopInfoManage.list(shop, offset, limit));		
 	}
 	
 	public void getShopList(){
 	   ShopInfo shop=getModel(ShopInfo.class);
-		List<ShopInfo>list=ShopManage.list(shop, 1, 50);
+		List<ShopInfo>list=ShopInfoManage.list(shop, 1, 50);
 		renderJson(list);
 	}
 	
@@ -31,19 +31,19 @@ public class ShopController extends Controller{
 	public void create(){
 		ShopInfo shop = getModel(ShopInfo.class);
 		shop.set("type", 1);
-		renderJson("succeed", ShopManage.create(shop));
+		renderJson("succeed", ShopInfoManage.create(shop));
 	}
 	
 	public void edit(){
 		ShopInfo shop = this.getModel(ShopInfo.class);
-		renderJson("succeed", ShopManage.edit(shop));
+		renderJson("succeed", ShopInfoManage.edit(shop));
 	}
 	
 	public void changePassword(){
 		ShopInfo shop = new ShopInfo();
 		shop.setUUID(this.getPara("uuid"));
 		shop.setPassword(this.getPara("password"));
-		renderJson("result", ShopManage.changePassword(shop));
+		renderJson("result", ShopInfoManage.changePassword(shop));
 	}
 	
 	public void editShop(){
@@ -55,12 +55,12 @@ public class ShopController extends Controller{
 	
 	public void delete(){
 		String uuid = this.getPara("uid");
-		renderJson(ShopManage.delete(uuid));
+		renderJson(ShopInfoManage.delete(uuid));
 	}
 
 	public void checkNameExists(){
 		String name=getPara("name");
 		String key=getPara("key");
-		renderJson("legal", !ShopManage.checkNameExists(name,key));
+		renderJson("legal", !ShopInfoManage.checkNameExists(name,key));
 	}
 }

@@ -1,0 +1,26 @@
+package com.manage.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jfinal.plugin.activerecord.Page;
+import com.manage.model.SpecialActivity;
+
+public class SpecialActivityManage {
+	public static final List<SpecialActivity> list(SpecialActivity as, int offset, int limit){
+		StringBuffer where = new StringBuffer("from specialactivity where deleted=0");
+		List<Object> params = new ArrayList<Object>();
+		if(as.getStr("status") != null && !"".equals(as.getStr("status").trim())){
+			where.append(" and status=?");
+			params.add(as.getStr("status"));
+		}
+		where.append(" order by startTime");
+		Page<SpecialActivity> sas = null;
+		if(params.size() == 0){
+			sas = SpecialActivity.dao.paginate(offset, limit, "select *", where.toString());
+		}else{
+			sas = SpecialActivity.dao.paginate(offset, limit, "select * ", where.toString(), params);
+		}
+		return sas.getList();
+	}
+}

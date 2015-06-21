@@ -10,9 +10,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.JspRender;
 import com.jfinal.render.ViewType;
-import com.manage.controller.DashBoardController;
-import com.manage.controller.ProductController;
-import com.manage.controller.ShopController;
+import com.manage.controller.*;
 import com.manage.model.*;
 
 public class WeShopConfig extends JFinalConfig{
@@ -43,25 +41,33 @@ public class WeShopConfig extends JFinalConfig{
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
 		me.add(arp);
 		arp.addMapping("adInfo",  "iid", AdInfo.class);
-		arp.addMapping("cheapShop",  "iid", CheapShop.class);
-		arp.addMapping("cityCode", "iid",  CityCode.class);
-		arp.addMapping("orderInfo", "iid",  OrderInfo.class);
-		arp.addMapping("orderInfoDetail",  "iid", OrderInfoDetail.class);
+		arp.addMapping("cheapproduct",  "iid", CheapProduct.class);
+		arp.addMapping("citycode", "iid",  CityCode.class);
+		arp.addMapping("orderinfo", "iid",  OrderInfo.class);
+		arp.addMapping("orderinfodetail",  "iid", OrderInfoDetail.class);
 		arp.addMapping("product",  "iid", Product.class);
-		arp.addMapping("ProfitReturn",  "iid", ProfitReturn.class);
-		arp.addMapping("profitReturnSetting",  "iid", ProfitReturnSetting.class);
-		arp.addMapping("salesPayTask", "iid",  SalesPayTask.class);
-		arp.addMapping("shopComments",  "iid", ShopComments.class);
-		arp.addMapping("shopInfo", "iid",  ShopInfo.class);
-		arp.addMapping("shopTypeDic",  "iid", ShopTypeDic.class);
-		arp.addMapping("specialActivity",  "iid", SpecialActivity.class);
-		arp.addMapping("userInfo",  "iid", UserInfo.class);
+		arp.addMapping("profitreturn",  "iid", ProfitReturn.class);
+		arp.addMapping("profitreturnsetting",  "iid", ProfitReturnSetting.class);
+		arp.addMapping("salespaytask", "iid",  SalesPayTask.class);
+		arp.addMapping("shopcomments",  "iid", ShopComments.class);
+		arp.addMapping("shopinfo", "iid",  ShopInfo.class);
+		arp.addMapping("shoptypedic",  "iid", ShopTypeDic.class);
+		arp.addMapping("specialactivity",  "iid", SpecialActivity.class);
+		arp.addMapping("userinfo",  "iid", UserInfo.class);
 	}
 
 	@Override
 	public void configRoute(Routes me) {
 		me.add("/dashBoard",DashBoardController.class);
 		me.add("/shop",ShopController.class);
+		me.add("/ad",AdInfoController.class);
+		me.add("/cheapProduct",CheapProductController.class);
+		me.add("/cityCode",CityCodeController.class);
+		me.add("/order",OrderController.class);
 		me.add("/product",ProductController.class);
+		me.add("/profitReturnSetting",ProfitReturnSettingController.class);
+		me.add("/comment", ShopCommentsController.class);
+		me.add("/type", ShopTypeDicController.class);
+		me.add("/specialActivity",SpecialActivityController.class);
 	}
 }

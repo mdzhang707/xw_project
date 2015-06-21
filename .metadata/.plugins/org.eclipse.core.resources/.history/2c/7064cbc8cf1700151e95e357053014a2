@@ -1,0 +1,12 @@
+package com.manage.service;
+
+import java.util.List;
+
+import com.manage.model.ShopTypeDic;
+
+public class ShopTypeDicManage {
+	public static final List<ShopTypeDic> list(ShopTypeDic std){
+		StringBuffer where = new StringBuffer("from shoptypedic");
+		
+	}
+}

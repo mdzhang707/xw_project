@@ -18,7 +18,7 @@ public class ShopTypeDic extends Model<ShopTypeDic> {
 	/**
 	 * 标识码
 	 */
-	private String code;
+	private String uuid;
 	/**
 	 * 展示级别
 	 */
@@ -26,7 +26,7 @@ public class ShopTypeDic extends Model<ShopTypeDic> {
 	/**
 	 * 父级
 	 */
-	private int parentCode;
+	private String parentUuid;
 	/**
 	 * 是否删除
 	 */
@@ -64,11 +64,11 @@ public class ShopTypeDic extends Model<ShopTypeDic> {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getCode() {
-		return code;
+	public String getUuid() {
+		return uuid;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 	public int getLeve() {
 		return leve;
@@ -76,11 +76,11 @@ public class ShopTypeDic extends Model<ShopTypeDic> {
 	public void setLeve(int leve) {
 		this.leve = leve;
 	}
-	public int getParentCode() {
-		return parentCode;
+	public String getParentUuid() {
+		return parentUuid;
 	}
-	public void setParentCode(int parentCode) {
-		this.parentCode = parentCode;
+	public void setParentCode(String parentUuid) {
+		this.parentUuid = parentUuid;
 	}
 	
 	public static final ShopTypeDic dao = new ShopTypeDic();

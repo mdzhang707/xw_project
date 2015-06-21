@@ -1,0 +1,27 @@
+package com.manage.service;
+
+import java.util.List;
+
+import com.jfinal.plugin.activerecord.Page;
+import com.manage.model.CheapProduct;
+
+public class CheapProductManage {
+	public static final List<CheapProduct> list(CheapProduct cp, int offset, int limit){
+		StringBuffer where = new StringBuffer("from cheapproduct where deleted=0");
+		List<Object> params = new ArrayList<Object>();
+		if(cp.getStr("activeId") != null && !"".equals(cp.getStr("activeId").trim())){
+			where.append(" and activeId=?");
+			params.add(cp.getStr("activeId"));
+		}
+		if(cp.getStr("shopId") != null && !"".equals(cp.getStr("shopId"))){
+			where.append(" and shopId=?");
+			params.add(cp.getStr("shopId").trim());
+		}
+		Page<CheapProduct> cps = null;
+		if(params.size() == 0){
+			cps = CheapProduct.dao.paginate(offset, limit, "select *", where.toString());
+		}else{
+			cps = CheapProduct.dao.paginate(offset, limit, "select * ", where.toString(), params);
+		}
+	}
+}

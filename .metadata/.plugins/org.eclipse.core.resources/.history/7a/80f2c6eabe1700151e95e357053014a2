@@ -1,0 +1,15 @@
+package com.manage.service;
+
+import java.util.List;
+
+import com.manage.model.AdInfo;
+
+public class AdInfoManage {
+	public static final List<AdInfo> list(){
+		return AdInfo.dao.find("select * from adinfo");
+	}
+	
+	public static final boolean create(AdInfo ad){
+		return ad.save();
+	}
+}

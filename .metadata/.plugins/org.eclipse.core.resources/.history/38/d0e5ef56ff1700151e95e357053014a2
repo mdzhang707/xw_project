@@ -1,0 +1,22 @@
+package com.manage.controller;
+
+import com.jfinal.core.Controller;
+import com.manage.service.AdInfoManage;
+
+public class CheapProductController extends Controller {
+	public void list(){
+		
+	}
+	
+	public void create(){
+		
+	}
+	
+	public void edit(){
+		
+	}
+	
+	public void delete(){
+		
+	}
+}
