@@ -17,11 +17,11 @@ public class OrderInfoManager {
 		List<Object> params = new ArrayList<Object>();
 		if(order.getStr("createUser") != null && !"".equals(order.getStr("createUser").trim())){
 			where.append(" and createUser=?");
-			params.add(order.getStr("createUser").trim());
+			params.add(order..getStr("createUser").trim());
 		}
-		if(order.getStr("shopCode") != null && !"".equals(order.getStr("shopCode").trim())){
+		if(order.getStr("shopCode") != null && !"".equals(order.getStr("shopCode").trim())	){
 			where.append(" and shopCode=?");
-			params.add(order.getStr("shopCode").trim());
+			params.add(order.getShopCode().trim());
 		}
 		where.append(" order by createTime desc");	
 		Page<OrderInfo> orders = null;

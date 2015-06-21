@@ -1,0 +1,16 @@
+package com.manage.service;
+
+import java.util.List;
+
+import com.manage.model.CityCode;
+
+public class CityCodeManage {
+	public static final List<CityCode> list(CityCode)(CityCode city, int offset, int limit){
+		StringBuffer where = new StringBuffer("from citycode where deleted=0");
+		List<Object> params = new ArrayList<Object>();
+		if(city.getInt("level") != null && !"".equals(city.getInt("level").trim())){
+			where.append(" and level=?");
+			params.add(city.getInt("level").trim());
+		}
+	}
+}
